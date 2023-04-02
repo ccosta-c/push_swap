@@ -6,13 +6,13 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:36:31 by ccosta-c          #+#    #+#             */
-/*   Updated: 2022/12/15 11:38:31 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/02 22:13:58 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	c_words(const char *s, char c)
+int	c_words(const char *s, char c)
 {
 	int	space;
 	int	words;

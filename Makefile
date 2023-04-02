@@ -6,7 +6,7 @@
 #    By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 20:09:19 by ccosta-c          #+#    #+#              #
-#    Updated: 2023/04/02 20:12:12 by ccosta-c         ###   ########.fr        #
+#    Updated: 2023/04/02 22:12:25 by ccosta-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,19 +32,20 @@ MKFLAGS		= --no-print-directory
 LIBFTFLAGS	= -L ./libft -lft
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+DEPS		= includes 
 SRCS		= .
-#SRCS_BONUS	= bonus
+SRCS_BONUS	= bonus
 LIBFT		= libft
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-SRC				= main.c
+SRC				= utils.c
 OBJS 			:= $(SRC:.c=.o)
-#BONUS			= 
-#OBJS_BONUS		:= $(BONUS:.c=.o) 
+BONUS			= 
+OBJS_BONUS		:= $(BONUS:.c=.o) 
 NAME			= push_swap
-#NAME_BONUS		= so_long_bonus
+NAME_BONUS		= push_swap_bonus
 TARGET			= $(addprefix $(SRCS)/, $(OBJS))
-#TARGET_BONUS	= $(addprefix $(SRCS_BONUS)/, $(OBJS_BONUS))
+TARGET_BONUS	= $(addprefix $(SRCS_BONUS)/, $(OBJS_BONUS))
 
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RULES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -52,9 +53,9 @@ all: $(NAME)
 
 $(NAME): $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
-	make $(MKFLAGS) -C $(LIBFT)
+	make $(MKFLAGS) -sC $(LIBFT)
 
-	$(CC) $(CFLAGS) $(TARGET) $(LIBFTFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) -o $(NAME)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -63,21 +64,23 @@ $(NAME): $(TARGET)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean $(MKFLAGS) -C $(LIBFT)
+	make clean $(MKFLAGS) -sC $(LIBFT)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)libft/*.o$(RESET)"
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
 	$(RM) $(TARGET) $(TARGET_BONUS)
 
 fclean: clean
-	make fclean $(MKFLAGS) -C $(LIBFT)
+	make fclean $(MKFLAGS) -sC $(LIBFT)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(RM) $(NAME) $(NAME_BONUS)
+	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 
 bonus: $(TARGET_BONUS)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
-	make $(MKFLAGS) -C $(LIBFT)
-	$(CC) $(CFLAGS) bonus/main.c $(TARGET_BONUS) $(LIBFTFLAGS) $(LIBXFLAGS) -o $(NAME_BONUS) -I $(DEPS)
+	make $(MKFLAGS) -sC $(LIBFT)
+	$(CC) $(CFLAGS) bonus/main.c $(TARGET_BONUS) $(LIBFTFLAGS) -o $(NAME_BONUS) -I $(DEPS)
 	echo "$(GREEN)Done.$(RESET)"
 
-.SILENT:
 re: fclean all
+
+.SILENT:

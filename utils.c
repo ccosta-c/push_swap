@@ -1,22 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/02 22:42:46 by ccosta-c         ###   ########.fr       */
+/*   Created: 2023/04/02 21:58:11 by ccosta-c          #+#    #+#             */
+/*   Updated: 2023/04/02 22:11:11 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft/libft.h"
+void	free_array(char **array, int y)
+{
+	int	i;
 
-void	free_array(char **array, int y);
-void	ft_print_array(char **array, int limit);
-void	str_array_to_int_list (char *str);
+	i = 0;
+	while (i < y)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
-#endif
+void	ft_print_array(char **array, int limit)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < limit)
+	{
+		while (array && array[i][j] != '\0')
+		{
+			ft_printf("%c", array[i][j]);
+			j++;
+		}
+		i++;
+		j = 0;
+		ft_printf("\n");
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:07:09 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/02/13 20:37:31 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/02 22:14:15 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,6 @@ int		ft_string(char *str);
 int		ft_unsigned(unsigned int nb);
 int		ft_address(unsigned long address);
 size_t	ft_strlenwithoutn(const char *s);
+int		c_words(const char *s, char c);
 
 #endif
