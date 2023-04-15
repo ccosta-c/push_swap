@@ -6,7 +6,7 @@
 #    By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 20:09:19 by ccosta-c          #+#    #+#              #
-#    Updated: 2023/04/02 22:12:25 by ccosta-c         ###   ########.fr        #
+#    Updated: 2023/04/14 11:01:08 by ccosta-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,21 @@ RM = rm -f
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS		= -Wall -Wextra -Werror 
+CFLAGS		= -Wall -Wextra -Werror -g
 MKFLAGS		= --no-print-directory
 LIBFTFLAGS	= -L ./libft -lft
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-DEPS		= includes 
+DEPS		= includes
 SRCS		= .
 SRCS_BONUS	= bonus
 LIBFT		= libft
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-SRC				= utils.c
+SRC				= lst_operations.c utils.c operations.c
 OBJS 			:= $(SRC:.c=.o)
-BONUS			= 
-OBJS_BONUS		:= $(BONUS:.c=.o) 
+BONUS			=
+OBJS_BONUS		:= $(BONUS:.c=.o)
 NAME			= push_swap
 NAME_BONUS		= push_swap_bonus
 TARGET			= $(addprefix $(SRCS)/, $(OBJS))
@@ -56,10 +56,10 @@ $(NAME): $(TARGET)
 	make $(MKFLAGS) -sC $(LIBFT)
 
 	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) -o $(NAME)
-	
+
 	echo "$(GREEN)Done.$(RESET)"
-	
-%.o : %.c 
+
+%.o : %.c
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@
 

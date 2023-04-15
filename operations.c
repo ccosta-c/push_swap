@@ -1,46 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 10:54:32 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/15 19:02:11 by ccosta-c         ###   ########.fr       */
+/*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
+/*   Updated: 2023/04/15 18:32:48 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	print_list(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while(i < stack->size)
-	{
-		ft_printf("%i\n", stack->top->content);
-		stack->top = stack->top->next;
-		i++;
-	}
-}
-
-void	ft_print_array(char **array)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < 3)
-	{
-		while (array && array[i][j] != '\0')
-		{
-			ft_printf("%c", array[i][j]);
-			j++;
-		}
-		i++;
-		j = 0;
-		ft_printf("\n");
-	}
-}
+#include ""
