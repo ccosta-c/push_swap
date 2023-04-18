@@ -58,9 +58,9 @@ ft_lstadd_back	- Add the node *new* at the end of the list;
 ft_lstdelone	- Free the memory of the node *lst*;
 ft_lstclear		- Free the memory of the list *lst*;
 ft_lstiter		- Iterates the list *lst* and applies the function *f* to the 
-	content of each node;
+	nbr of each node;
 ft_lstmap		- Iterates the list *lst* and applies the function *f* to the
-	content of each node. Creates a new list resulting of the successive 
+	nbr of each node. Creates a new list resulting of the successive
 	applications of the function *f*.
 get_next_line	- Read a line from a file descriptor;
 */	

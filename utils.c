@@ -19,7 +19,7 @@ void	print_list(t_stack *stack)
 	i = 0;
 	while (i < stack->size)
 	{
-		ft_printf("%i\n", stack->top->content);
+		ft_printf("%i\n", stack->top->nbr);
 		stack->top = stack->top->next;
 		i++;
 	}

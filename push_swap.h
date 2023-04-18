@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 16:31:13 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:40:20 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ typedef struct s_stack
 {
 	struct s_node		*top;
 	int					size;
+	char				stack_char;
 }						t_stack;
 
 typedef struct s_node
 {
-	int					content;
+	int					nbr;
 	struct s_node		*next;
 	struct s_node		*previous;
 }						t_node;
@@ -42,8 +43,9 @@ void	reverse_rotate(t_stack *stack);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 void	rotate(t_stack *stack);
 void	rr(t_stack *stack_a, t_stack *stack_b);
-void	sort_3(t_stack *stack_a, t_stack *stack_b);
+void	sort_3(t_stack *stack_a);
 void	free_list(t_stack *stack);
 void	free_array(char **array, int y);
+void	check_algorithm(t_stack *stack_a, t_stack *stack_b);
 
 #endif

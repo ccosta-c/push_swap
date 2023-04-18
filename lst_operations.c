@@ -17,7 +17,7 @@ t_node	*create_node(int nbr)
 	t_node	*new;
 
 	new = malloc(sizeof(t_node));
-	new->content = nbr;
+	new->nbr = nbr;
 	new->previous = NULL;
 	new->next = NULL;
 	return (new);
