@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 15:33:52 by ccosta-c         ###   ########.fr       */
+/*   Created: 2023/04/18 15:21:33 by ccosta-c          #+#    #+#             */
+/*   Updated: 2023/04/18 15:34:07 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack *stack)
+void	rotate(t_stack *stack)
 {
-	int	tmp;
-
 	if (stack->size < 2)
 		return ;
-	tmp = stack->top->content;
-	stack->top->content = stack->top->next->content;
-	stack->top->next->content = tmp;
+	stack->top = stack->top->next;
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
+void	rr(t_stack *stack_a, t_stack *stack_b)
 {
-	swap(stack_a);
-	swap(stack_b);
+	rotate(stack_a);
+	rotate(stack_b);
 }
 
-void	push(t_stack *source, t_stack *destination)
+void	reverse_rotate(t_stack *stack)
 {
-	if (source->size == 0)
+	if (stack->size < 2)
 		return ;
-	stack_change(create_node(source->top->content), destination);
-	delete_top_node(source);
-	source->size -= 1;
+	stack->top = stack->top->previous;
+}
+
+void	rrr(t_stack *stack_a, t_stack *stack_b)
+{
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
 }

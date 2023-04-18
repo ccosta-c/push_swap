@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:54:32 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/15 19:02:11 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:29:04 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_list(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while(i < stack->size)
+	while (i < stack->size)
 	{
 		ft_printf("%i\n", stack->top->content);
 		stack->top = stack->top->next;
@@ -43,4 +43,26 @@ void	ft_print_array(char **array)
 		j = 0;
 		ft_printf("\n");
 	}
+}
+
+void	free_list(t_stack *stack)
+{
+	while (stack->size > 0)
+	{
+		delete_top_node(stack);
+		stack->size--;
+	}
+}
+
+void	free_array(char **array, int y)
+{
+	int	i;
+
+	i = 0;
+	while (i < y)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
