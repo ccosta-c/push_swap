@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 19:49:15 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/19 10:32:40 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void	free_array(char **array, int y);
 void	check_algorithm(t_stack *stack_a, t_stack *stack_b);
 void	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation);
 void	run_operations_2(t_stack *stack_a, t_stack *stack_b, char *operation);
+void	sort_2(t_stack *stack_a, t_stack *stack_b);
+void	sort_5(t_stack *stack_a, t_stack *stack_b);
 
 #endif

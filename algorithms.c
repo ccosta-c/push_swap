@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:36:58 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/19 10:15:14 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:36:00 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	check_algorithm(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a->size == 3)
+ 	if (stack_a->size == 3)
 		sort_3(stack_a, stack_b);
+	if (stack_a->size == 2)
+		sort_2(stack_a, stack_b);
+	if (stack_a->size == 5)
+		sort_5(stack_a, stack_b);
 }
 
 void	sort_3(t_stack *stk, t_stack *stk_b)
@@ -41,4 +45,16 @@ void	sort_3(t_stack *stk, t_stack *stk_b)
 		run_operations(stk, stk_b, "sa");
 		run_operations(stk, stk_b, "ra");
 	}
+}
+
+void	sort_2(t_stack *stack_a, t_stack *stack_b)
+{
+	if (stack_a->top->nbr > stack_a->top->previous->nbr)
+		run_operations(stack_a, stack_b, "sa");
+}
+
+void	sort_5(t_stack *stack_a, t_stack *stack_b)
+{
+	run_operations(stack_a, stack_b, "pb");
+	run_operations(stack_a, stack_b, "pb");
 }

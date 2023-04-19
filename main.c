@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 19:15:02 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:22:15 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		initialize(&stack_a, &stack_b);
- 		str_to_int_list(&stack_a, argv[1]);
+		str_to_int_list(&stack_a, argv[1]);
 		check_algorithm(&stack_a, &stack_b);
-		//print_list(&stack_a);
+		print_list(&stack_a);
+		ft_printf("\n");
+		print_list(&stack_b);
 		free_list(&stack_a);
 		free_list(&stack_b);
 	}

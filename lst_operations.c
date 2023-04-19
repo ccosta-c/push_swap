@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:41:38 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 15:40:27 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:02:17 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	delete_top_node(t_stack *stack)
 	t_node	*tmp;
 
 	tmp = stack->top;
+	stack->top->previous = stack->top->next;
 	stack->top = stack->top->next;
+	stack->top->previous->next = stack->top->next;
 	free(tmp);
 }
