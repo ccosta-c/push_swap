@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/19 14:35:55 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:43:39 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ void	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation)
 
 void	run_operations_2(t_stack *stack_a, t_stack *stack_b, char *operation)
 {
-	if (ft_strncmp("rr", operation, 2) == 0)
-		if (rr(stack_a, stack_b) == 0)
-			ft_printf("rr\n");
 	if (ft_strncmp("rra", operation, 3) == 0)
 		if (reverse_rotate(stack_a) == 0)
 			ft_printf("rra\n");
@@ -52,6 +49,9 @@ void	run_operations_2(t_stack *stack_a, t_stack *stack_b, char *operation)
 	if (ft_strncmp("rrr", operation, 3) == 0)
 		if (rrr(stack_a, stack_b) == 0)
 			ft_printf("rrr\n");
+	if (ft_strncmp("rr", operation, 3) == 0)
+		if (rr(stack_a, stack_b) == 0)
+			ft_printf("rr\n");
 }
 
 int	swap(t_stack *stack)
