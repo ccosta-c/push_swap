@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:36:58 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/19 14:36:00 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:55:52 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,23 @@ void	sort_2(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_5(t_stack *stack_a, t_stack *stack_b)
 {
+	int	position;
+
+	position = find_min(stack_a);
+	if (position == 1)
+		run_operations(stack_a, stack_b, "pb");
+	if (position > 1 && position <= 3)
+	{
+		while (position > 1)
+		{
+			run_operations(stack_a, stack_b, "ra");
+			position--;
+		}
+	}
 	run_operations(stack_a, stack_b, "pb");
-	run_operations(stack_a, stack_b, "pb");
+	sort_3(stack_a, stack_b);
+	if (stack_a->size == 4)
+	{
+
+	}
 }
