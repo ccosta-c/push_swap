@@ -6,13 +6,13 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/20 17:25:17 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:28:00 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	str_to_int_list(t_stack *stack, char *str)
+int	str_to_int_list(t_stack *stack, char *str)
 {
 	int		i;
 	char	**array;
@@ -32,6 +32,7 @@ void	str_to_int_list(t_stack *stack, char *str)
 		i--;
 	}
 	free_array(array, size);
+	return (0);
 }
 
 void	arg_to_int_list(char **argv, int argc, t_stack *stack)
@@ -62,6 +63,8 @@ int	main(int argc, char **argv)
 	{
 		initialize(&stack_a, &stack_b);
 		str_to_int_list(&stack_a, argv[1]);
+		if (checks(&stack_a))
+			return (1);
 		check_algorithm(&stack_a, &stack_b);
 		print_list(&stack_a);
 		ft_printf("\n");
@@ -73,6 +76,8 @@ int	main(int argc, char **argv)
 	{
 		initialize(&stack_a, &stack_b);
 		arg_to_int_list(argv, argc, &stack_a);
+		if (checks(&stack_a))
+			return (1);
 		check_algorithm(&stack_a, &stack_b);
 		free_list(&stack_a);
 		free_list(&stack_b);

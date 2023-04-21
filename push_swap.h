@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/20 15:54:58 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:22:26 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_node
 	struct s_node		*previous;
 }						t_node;
 
-void	str_to_int_list(t_stack *stack, char *str);
+int		str_to_int_list(t_stack *stack, char *str);
 t_node	*create_node(int nbr);
 void	stack_change(t_node *new_node, t_stack *stack);
 void	initialize(t_stack *stack_a, t_stack *stack_b);
@@ -54,5 +54,8 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b);
 int		find_min(t_stack *stack);
 int		find_max(t_stack *stack);
 void	nbr_rotates(t_stack *stack_a, t_stack *stack_b, int position);
+int		check_order(t_stack *stack_a);
+int		check_duplicates(char **array, int i);
+int		checks(t_stack *stack_a);
 
 #endif

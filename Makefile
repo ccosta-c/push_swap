@@ -38,7 +38,9 @@ SRCS_BONUS	= bonus
 LIBFT		= libft
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-SRC				= lst_operations.c utils.c operations.c operations_2.c algorithms.c utils_2.c
+SRC				= 	lst_operations.c checks.c  \
+					utils.c operations.c operations_2.c algorithms.c utils_2.c \
+
 OBJS 			:= $(SRC:.c=.o)
 BONUS			=
 OBJS_BONUS		:= $(BONUS:.c=.o)
