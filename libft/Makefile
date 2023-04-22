@@ -21,13 +21,13 @@ ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c  ft_char.c \
 get_next_line.c ft_hex.c ft_integer.c ft_pointer.c ft_printf.c ft_string.c \
-ft_unsigned.c ft_strlenwithoutn.c \
+ft_unsigned.c ft_strlenwithoutn.c ft_atol.c\
 
 OBJS := $(SRC:.c=.o)
 
 COMPILER = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 

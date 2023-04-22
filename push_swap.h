@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/21 11:22:26 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:17:43 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stack_change(t_node *new_node, t_stack *stack);
 void	initialize(t_stack *stack_a, t_stack *stack_b);
 void	print_list(t_stack *stack);
 void	ft_print_array(char **array);
-void	arg_to_int_list(char **argv, int argc, t_stack *stack);
+int		arg_to_int_list(char **argv, int argc, t_stack *stack);
 int		swap(t_stack *stack);
 int		ss(t_stack *stack_a, t_stack *stack_b);
 int		push(t_stack *source, t_stack *destination);
@@ -57,5 +57,6 @@ void	nbr_rotates(t_stack *stack_a, t_stack *stack_b, int position);
 int		check_order(t_stack *stack_a);
 int		check_duplicates(char **array, int i);
 int		checks(t_stack *stack_a);
+int		is_nbr(char *str);
 
 #endif
