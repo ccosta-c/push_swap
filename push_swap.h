@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/24 11:30:19 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:48:41 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b);
 int		find_min(t_stack *stack);
 int		find_max(t_stack *stack);
 void	nbr_rotates(t_stack *stack_a, t_stack *stack_b, int position);
-int		check_order(t_stack *stack_a);
+int		check_order(t_stack *stack);
+int		check_revorder(t_stack *stack);
 int		check_duplicates(char **array, int i);
 int		checks(t_stack *stack_a);
 int		is_nbr(char *str);
+int		sort(t_stack *stack_a, t_stack *stack_b);
 
 #endif

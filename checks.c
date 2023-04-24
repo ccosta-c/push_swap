@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/24 12:40:50 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:02:46 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,26 @@ int	checks(t_stack *stack_a)
 	return (0);
 }
 
-int	check_order(t_stack *stack_a)
+int	check_order(t_stack *stack)
 {
 	int	i;
 
-	i = stack_a->size;
+	i = stack->size;
 	while (i > 1)
 	{
-		if (stack_a->top->nbr > stack_a->top->next->nbr)
+		if (stack->top->nbr > stack->top->next->nbr)
+		{
+			while (i > 0)
+			{
+				stack->top = stack->top->next;
+				i--;
+			}
 			return (0);
-		stack_a->top = stack_a->top->next;
+		}
+		stack->top = stack->top->next;
 		i--;
 	}
-	stack_a->top = stack_a->top->next;
+	stack->top = stack->top->next;
 	return (-1);
 }
 
@@ -51,4 +58,27 @@ int	check_duplicates(char **array, int i)
 		i--;
 	}
 	return (0);
+}
+
+int	check_revorder(t_stack *stack)
+{
+	int	i;
+
+	i = stack->size;
+	while (i > 1)
+	{
+		if (stack->top->nbr < stack->top->next->nbr)
+		{
+			while (i > 0)
+			{
+				stack->top = stack->top->next;
+				i--;
+			}
+			return (0);
+		}
+		stack->top = stack->top->next;
+		i--;
+	}
+	stack->top = stack->top->next;
+	return (-1);
 }
