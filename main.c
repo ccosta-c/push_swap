@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/22 20:50:42 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:49:44 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	str_to_int_list(t_stack *stack, char *str)
 	while (array[i] != NULL)
 		i++;
 	i--;
+	if (check_duplicates(array, i) == -1)
+	{
+		return (-1);
+	}
 	while (i >= 0)
 	{
 		if (is_nbr(array[i]) == -1)
@@ -40,8 +44,12 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 	int	tmp;
 
 	argc -= 1;
+	if (check_duplicates(argv, argc) == -1)
+		return (-1);
 	while (argc > 0)
 	{
+		if (is_nbr(argv[argc]) == -1)
+			return (-1);
 		tmp = ft_atoi(argv[argc]);
 		stack_change(create_node(tmp), stack);
 		argc--;
@@ -68,8 +76,7 @@ int	main(int argc, char **argv)
 			write(2, "Error\n", 6);
 			return (1);
 		}
-
-		if (checks(&stack_a))
+		if (checks(&stack_a) == -1)
 			return (1);
 		check_algorithm(&stack_a, &stack_b);
 		print_list(&stack_a);
@@ -81,13 +88,11 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		initialize(&stack_a, &stack_b);
-		if (arg_to_int_list(argv, argc, &stack_a))
+		if (arg_to_int_list(argv, argc, &stack_a) == -1)
 		{
 			write(2, "Error\n", 6);
 			return (1);
 		}
-		/*if (checks(&stack_a))
-			return (1);*/
 		check_algorithm(&stack_a, &stack_b);
 		free_list(&stack_a);
 		free_list(&stack_b);
