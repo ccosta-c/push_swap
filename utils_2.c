@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	find_min(t_stack *stack)
+int	find_posmin(t_stack *stack)
 {
 	int	position;
 	int	min;
@@ -39,7 +39,7 @@ int	find_min(t_stack *stack)
 	return (position);
 }
 
-int	find_max(t_stack *stack)
+int	find_posmax(t_stack *stack)
 {
 	int	position;
 	int	max;
@@ -73,4 +73,49 @@ int	is_nbr(char *str)
 	else if (ft_atol(str) >= INT_MIN && ft_atol(str) <= INT_MAX)
 		return (1);
 	return (-1);
+}
+
+int	find_max(t_stack *stack)
+{
+	int	max;
+	int	i;
+
+	i = 1;
+	while (stack->size >= i)
+	{
+		if (i == 1)
+		{
+			max = stack->top->nbr;
+		}
+		if (stack->top->nbr > max)
+		{
+			max = stack->top->nbr;
+		}
+		stack->top = stack->top->next;
+		i++;
+	}
+	return (max);
+}
+
+int	find_min(t_stack *stack)
+{
+	int	min;
+	int	i;
+
+	i = 1;
+	min = 0;
+	while (stack->size >= i)
+	{
+		if (i == 1)
+		{
+			min = stack->top->nbr;
+		}
+		if (stack->top->nbr < min)
+		{
+			min = stack->top->nbr;
+		}
+		stack->top = stack->top->next;
+		i++;
+	}
+	return (min);
 }

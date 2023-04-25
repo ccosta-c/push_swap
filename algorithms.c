@@ -59,12 +59,12 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 {
 	int	position;
 
-	position = find_min(stack_a);
+	position = find_posmin(stack_a);
 	nbr_rotates(stack_a, stack_b, position);
 	run_operations(stack_a, stack_b, "pb");
 	if (stack_a->size == 4)
 	{
-		position = find_max(stack_a);
+		position = find_posmax(stack_a);
 		nbr_rotates(stack_a, stack_b, position);
 		run_operations(stack_a, stack_b, "pb");
 	}
