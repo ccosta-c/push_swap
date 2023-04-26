@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 15:55:45 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:38:35 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ int	find_match(t_stack *stack, int nbr)
 {
 	int	slot;
 	int	i;
+	int max;
 
-	i = stack->size;
-	slot = find_max(stack);
-	if (nbr > slot)
+	i = 0;
+	slot = find_min(stack);
+	max = find_max(stack);
+	if (nbr > max)
 		return (slot);
-	while (i > stack->size)
+	while (i < stack->size)
 	{
-		if (stack->top->nbr > nbr && stack->top->nbr < slot)
+		if (stack->top->nbr < nbr && stack->top->nbr > slot)
 		{
 			slot = stack->top->nbr;
 		}
 		stack->top = stack->top->next;
-		i--;
+		i++;
 	}
 	return (slot);
 }
