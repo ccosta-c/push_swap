@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/25 19:23:02 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 02:01:53 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	sort(t_stack *stack_a, t_stack *stack_b)
 	run_operations(stack_a, stack_b, "pb");
 	run_operations(stack_a, stack_b, "pb");
 	if (check_revorder(stack_b) == -1)
-		run_operations(stack_a, stack_b, "ra");
+		run_operations(stack_a, stack_b, "rb");
 	find_match(stack_b, stack_a->top->nbr);
 	return (0);
 }

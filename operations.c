@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/20 17:43:39 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 02:10:44 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation)
 		if (rotate(stack_a) == 0)
 			ft_printf("ra\n");
 	if (ft_strncmp("rb", operation, 2) == 0)
-		if (rotate(stack_a) == 0)
+		if (rotate(stack_b) == 0)
 			ft_printf("rb\n");
 	run_operations_2(stack_a, stack_b, operation);
 }

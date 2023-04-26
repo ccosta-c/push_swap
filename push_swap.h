@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/25 18:52:24 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 01:57:17 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		is_nbr(char *str);
 int		sort(t_stack *stack_a, t_stack *stack_b);
 int		find_match(t_stack *stack, int nbr);
 int		find_max(t_stack *stack);
-int		find_min(t_stack *stack);
+int     find_min(t_stack *stack);
+int     find_index(int nbr, t_stack *stack);
 
 #endif
