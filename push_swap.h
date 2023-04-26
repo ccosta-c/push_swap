@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 02:34:53 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 03:17:06 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_utils
 	int		a_rotate;
 	int		b_revrotate;
 	int		b_rotate;
+	int     rr;
+	int     rrr;
 }			t_utils;
 
 int		str_to_int_list(t_stack *stack, char *str);
@@ -77,5 +79,7 @@ int     find_min(t_stack *stack);
 int     find_index(int nbr, t_stack *stack);
 void    count_moves(int nbr, t_stack *stack, t_utils *utils);
 void    init_utils(t_utils *utils);
+int     sum_moves(t_utils *utils);
+void    convert_rotates(t_utils *utils);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 02:39:41 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 03:10:12 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_utils utils;
+	t_utils best_utils;
+	int     i;
+	int     sum;
 
+	i = 0;
 	init_utils(&utils);
 	run_operations(stack_a, stack_b, "pb");
 	run_operations(stack_a, stack_b, "pb");
@@ -23,6 +27,14 @@ int	sort(t_stack *stack_a, t_stack *stack_b)
 		run_operations(stack_a, stack_b, "rb");
 	count_moves(stack_a->top->nbr, stack_a, &utils);
 	count_moves(find_match(stack_b, stack_a->top->nbr), stack_b, &utils);
+	best_utils = utils;
+	sum = sum_moves(&utils);
+	init_utils(&utils);
+	while (i < stack_a->size)
+	{
+		count_moves((stack_a->top->nbr, stack_a, &utils);
+		count_moves(find_match(stack_b, stack_a->top->nbr), stack_b, &utils);
+	}
 	return (0);
 }
 

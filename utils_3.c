@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 02:56:07 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 03:23:37 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,37 @@ void    init_utils(t_utils *utils)
 	utils->b_data = 0;
 	utils->a_revrotate = 0;
 	utils->b_revrotate = 0;
+}
+
+int sum_moves(t_utils *utils)
+{
+	int total;
+
+	total = 0;
+	convert_rotates(utils);
+	if (utils->a_rotate)
+		total += utils->a_rotate;
+	if (utils->b_rotate)
+		total += utils->b_rotate;
+	if (utils->a_revrotate)
+		total += utils->a_revrotate;
+	if (utils->b_revrotate)
+		total += utils->b_revrotate;
+	return (total);
+}
+
+void convert_rotates(t_utils *utils)
+{
+	while (utils->a_rotate >= 1 || utils->b_rotate >= 1)
+	{
+		utils->rr += 1;
+		utils->a_rotate -= 1;
+		utils->b_rotate -= 1;
+	}
+	while (utils->a_revrotate >= 1 || utils->b_revrotate >= 1)
+	{
+		utils->rrr += 1;
+		utils->a_revrotate -= 1;
+		utils->b_revrotate -= 1;
+	}
 }
