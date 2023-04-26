@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 02:01:53 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 02:39:41 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,41 @@
 
 int	sort(t_stack *stack_a, t_stack *stack_b)
 {
-	//t_utils	utils;
+	t_utils utils;
 
+	init_utils(&utils);
 	run_operations(stack_a, stack_b, "pb");
 	run_operations(stack_a, stack_b, "pb");
 	if (check_revorder(stack_b) == -1)
 		run_operations(stack_a, stack_b, "rb");
-	find_match(stack_b, stack_a->top->nbr);
+	count_moves(stack_a->top->nbr, stack_a, &utils);
+	count_moves(find_match(stack_b, stack_a->top->nbr), stack_b, &utils);
 	return (0);
 }
 
-int	find_match(t_stack *stack, int nbr)
+void    count_moves(int nbr, t_stack *stack, t_utils *utils)
 {
-	int	slot;
+	int nbr_pos;
+	int middle_stack;
 
-	slot = find_max(stack);
-	if (nbr > slot)
-		return (find_min(stack));
-	while (stack->size > 0)
+	nbr_pos = find_index(nbr, stack);
+	middle_stack = stack->size / 2;
+	if (stack->id == 'a')
+		utils->a_data = nbr;
+	else if (stack->id == 'b')
+		utils->b_data = nbr;
+	if (nbr_pos == middle_stack || nbr_pos < middle_stack)
 	{
-		if (stack->top->nbr > nbr && stack->top->nbr < slot)
-		{
-			slot = stack->top->nbr;
-		}
-		stack->top = stack->top->next;
-		stack->size--;
+		if (stack->id == 'a')
+			utils->a_rotate = nbr_pos;
+		if (stack->id == 'b')
+			utils->b_rotate = nbr_pos;
 	}
-	return (slot);
+	if (nbr_pos > middle_stack)
+	{
+		if (stack->id == 'a')
+			utils->a_revrotate = nbr_pos;
+		if (stack->id == 'b')
+			utils->b_revrotate = nbr_pos;
+	}
 }

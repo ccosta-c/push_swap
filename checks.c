@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/24 16:02:46 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 02:59:14 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ int	check_revorder(t_stack *stack)
 				stack->top = stack->top->next;
 				i--;
 			}
-			return (0);
+			return (-1);
 		}
 		stack->top = stack->top->next;
 		i--;
 	}
 	stack->top = stack->top->next;
-	return (-1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/25 19:03:08 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 02:25:33 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	initialize(t_stack *stack_a, t_stack *stack_b)
 {
 	stack_a->size = 0;
 	stack_b->size = 0;
+	stack_a->id = 'a';
+	stack_b->id = 'b';
 }
 
 int	main(int argc, char **argv)
