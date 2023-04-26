@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 02:59:14 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 12:00:46 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_revorder(t_stack *stack)
 	int	i;
 
 	i = stack->size;
-	while (i > 1)
+	while (i > 0)
 	{
 		if (stack->top->nbr < stack->top->next->nbr)
 		{
@@ -79,6 +79,5 @@ int	check_revorder(t_stack *stack)
 		stack->top = stack->top->next;
 		i--;
 	}
-	stack->top = stack->top->next;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:36:58 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/24 15:41:46 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:10:27 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_algorithm(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->size == 5 || stack_a->size == 4)
 		sort_5(stack_a, stack_b);
 	if (stack_a->size > 5)
-		sort(stack_a, stack_b);
+		sort_big(stack_a, stack_b);
 }
 
 void	sort_3(t_stack *stk, t_stack *stk_b)

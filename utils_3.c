@@ -6,27 +6,28 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 03:23:37 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:55:45 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_index(int nbr, t_stack *stack)
+int	find_index(int nbr, t_stack *stack)
 {
-	int pos;
-	int size_copy;
+	int	pos;
+	int	size_copy;
+	int	top;
 
+	top = stack->top->nbr;
 	size_copy = stack->size;
 	pos = 0;
 	while (size_copy > 0)
 	{
 		if (stack->top->nbr == nbr)
 		{
-			while (size_copy > 0)
+			while (stack->top->nbr != top)
 			{
 				stack->top = stack->top->next;
-				size_copy--;
 			}
 			return (pos);
 		}
@@ -39,24 +40,25 @@ int find_index(int nbr, t_stack *stack)
 int	find_match(t_stack *stack, int nbr)
 {
 	int	slot;
+	int	i;
 
+	i = stack->size;
 	slot = find_max(stack);
 	if (nbr > slot)
 		return (slot);
-	while (stack->size > 0)
+	while (i > stack->size)
 	{
 		if (stack->top->nbr > nbr && stack->top->nbr < slot)
 		{
 			slot = stack->top->nbr;
 		}
 		stack->top = stack->top->next;
-		stack->size--;
+		i--;
 	}
-	stack->top = stack->top->next;
 	return (slot);
 }
 
-void    init_utils(t_utils *utils)
+void	init_utils(t_utils *utils)
 {
 	utils->a_rotate = 0;
 	utils->b_rotate = 0;
@@ -64,11 +66,13 @@ void    init_utils(t_utils *utils)
 	utils->b_data = 0;
 	utils->a_revrotate = 0;
 	utils->b_revrotate = 0;
+	utils->rr = 0;
+	utils->rrr = 0;
 }
 
-int sum_moves(t_utils *utils)
+int	sum_moves(t_utils *utils)
 {
-	int total;
+	int	total;
 
 	total = 0;
 	convert_rotates(utils);
@@ -83,15 +87,15 @@ int sum_moves(t_utils *utils)
 	return (total);
 }
 
-void convert_rotates(t_utils *utils)
+void	convert_rotates(t_utils *utils)
 {
-	while (utils->a_rotate >= 1 || utils->b_rotate >= 1)
+	while (utils->a_rotate >= 1 && utils->b_rotate >= 1)
 	{
 		utils->rr += 1;
 		utils->a_rotate -= 1;
 		utils->b_rotate -= 1;
 	}
-	while (utils->a_revrotate >= 1 || utils->b_revrotate >= 1)
+	while (utils->a_revrotate >= 1 && utils->b_revrotate >= 1)
 	{
 		utils->rrr += 1;
 		utils->a_revrotate -= 1;

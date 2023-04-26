@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:06:08 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 03:17:06 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:20:21 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_stack
 {
 	struct s_node		*top;
 	int					size;
-	char                id;
+	char				id;
 }						t_stack;
 
 typedef struct s_node
@@ -37,8 +37,8 @@ typedef struct s_utils
 	int		a_rotate;
 	int		b_revrotate;
 	int		b_rotate;
-	int     rr;
-	int     rrr;
+	int		rr;
+	int		rrr;
 }			t_utils;
 
 int		str_to_int_list(t_stack *stack, char *str);
@@ -72,14 +72,16 @@ int		check_revorder(t_stack *stack);
 int		check_duplicates(char **array, int i);
 int		checks(t_stack *stack_a);
 int		is_nbr(char *str);
-int		sort(t_stack *stack_a, t_stack *stack_b);
+t_utils	sort(t_stack *stack_a, t_stack *stack_b);
 int		find_match(t_stack *stack, int nbr);
 int		find_max(t_stack *stack);
-int     find_min(t_stack *stack);
-int     find_index(int nbr, t_stack *stack);
-void    count_moves(int nbr, t_stack *stack, t_utils *utils);
-void    init_utils(t_utils *utils);
-int     sum_moves(t_utils *utils);
-void    convert_rotates(t_utils *utils);
+int		find_min(t_stack *stack);
+int		find_index(int nbr, t_stack *stack);
+void	count_moves(int nbr, t_stack *stack, t_utils *utils);
+void	init_utils(t_utils *utils);
+int		sum_moves(t_utils *utils);
+void	convert_rotates(t_utils *utils);
+void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b);
+void	sort_big(t_stack *stack_a, t_stack *stack_b);
 
 #endif
