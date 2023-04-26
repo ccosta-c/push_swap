@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 12:00:46 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 23:10:11 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	checks(t_stack *stack_a)
 {
-	if (check_order(stack_a) == -1)
+	if (check_order(stack_a) == 0)
 		return (-1);
 	return (0);
 }
@@ -22,24 +22,22 @@ int	checks(t_stack *stack_a)
 int	check_order(t_stack *stack)
 {
 	int	i;
+	t_stack *copy;
 
+	copy = copy_stack(stack);
 	i = stack->size;
 	while (i > 1)
 	{
-		if (stack->top->nbr > stack->top->next->nbr)
+		if (copy->top->nbr > copy->top->next->nbr)
 		{
-			while (i > 0)
-			{
-				stack->top = stack->top->next;
-				i--;
-			}
-			return (0);
+			return (-1);
+			free_list(copy);
 		}
-		stack->top = stack->top->next;
+		copy->top = copy->top->next;
 		i--;
 	}
-	stack->top = stack->top->next;
-	return (-1);
+	free_list(copy);
+	return (0);
 }
 
 int	check_duplicates(char **array, int i)
@@ -63,21 +61,20 @@ int	check_duplicates(char **array, int i)
 int	check_revorder(t_stack *stack)
 {
 	int	i;
+	t_stack *copy;
 
+	copy = copy_stack(stack);
 	i = stack->size;
-	while (i > 0)
+	while (i > 1)
 	{
-		if (stack->top->nbr < stack->top->next->nbr)
+		if (copy->top->nbr < copy->top->next->nbr)
 		{
-			while (i > 0)
-			{
-				stack->top = stack->top->next;
-				i--;
-			}
 			return (-1);
+			free_list(copy);
 		}
-		stack->top = stack->top->next;
+		copy->top = copy->top->next;
 		i--;
 	}
+	free_list(copy);
 	return (0);
 }

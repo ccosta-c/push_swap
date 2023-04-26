@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 17:38:35 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 23:55:09 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,44 @@
 
 int	find_index(int nbr, t_stack *stack)
 {
-	int	pos;
-	int	size_copy;
-	int	top;
+	int     i;
+	t_stack *copy;
 
-	top = stack->top->nbr;
-	size_copy = stack->size;
-	pos = 0;
-	while (size_copy > 0)
+	copy = copy_stack(stack);
+	i = 0;
+	while (copy->top->nbr != nbr)
 	{
-		if (stack->top->nbr == nbr)
-		{
-			while (stack->top->nbr != top)
-			{
-				stack->top = stack->top->next;
-			}
-			return (pos);
-		}
-		stack->top = stack->top->next;
-		pos++;
+		i++;
+		copy->top = copy->top->next;
 	}
-	return (-1);
+	free_list(copy);
+	return (i);
 }
 
 int	find_match(t_stack *stack, int nbr)
 {
-	int	slot;
-	int	i;
-	int max;
+	t_stack *copy;
+	int match;
 
-	i = 0;
-	slot = find_min(stack);
-	max = find_max(stack);
-	if (nbr > max)
-		return (slot);
-	while (i < stack->size)
+	copy = copy_stack(stack);
+	match = find_min(copy);
+	if (nbr > find_max(copy))
+		return (find_max(copy));
+	else
 	{
-		if (stack->top->nbr < nbr && stack->top->nbr > slot)
+		while (copy->size > 0)
 		{
-			slot = stack->top->nbr;
+			if(copy->top->nbr < nbr && copy->top->nbr > match)
+				match = copy->top->nbr;
+			copy->top = copy->top->next;
+			copy->size--;
 		}
-		stack->top = stack->top->next;
-		i++;
 	}
-	return (slot);
+	free_list(copy);
+	return (match);
 }
 
+//check
 void	init_utils(t_utils *utils)
 {
 	utils->a_rotate = 0;
@@ -72,6 +64,7 @@ void	init_utils(t_utils *utils)
 	utils->rrr = 0;
 }
 
+//check
 int	sum_moves(t_utils *utils)
 {
 	int	total;
@@ -86,9 +79,14 @@ int	sum_moves(t_utils *utils)
 		total += utils->a_revrotate;
 	if (utils->b_revrotate)
 		total += utils->b_revrotate;
+	if (utils->rr)
+		total += utils->rr;
+	if (utils->rrr)
+		total += utils->rrr;
 	return (total);
 }
 
+//check
 void	convert_rotates(t_utils *utils)
 {
 	while (utils->a_rotate >= 1 && utils->b_rotate >= 1)
@@ -103,4 +101,27 @@ void	convert_rotates(t_utils *utils)
 		utils->a_revrotate -= 1;
 		utils->b_revrotate -= 1;
 	}
+}
+
+t_stack *copy_stack( t_stack *stack)
+{
+	t_stack *copy;
+	int i;
+	int ref;
+
+	copy = malloc(sizeof (t_stack));
+	copy->size = 0;
+	copy->id = stack->id;
+	i = stack->size;
+	ref = stack->top->nbr;
+	stack->top = stack->top->previous;
+	while (i > 0)
+	{
+		stack_change(create_node(stack->top->nbr), copy);
+		stack->top = stack->top->previous;
+		i--;
+	}
+	while (stack->top->nbr != ref)
+		stack->top = stack->top->next;
+	return (copy);
 }

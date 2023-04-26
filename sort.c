@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 17:51:48 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/27 00:02:44 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,24 @@
 void	sort_big(t_stack *stack_a, t_stack *stack_b)
 {
 	t_utils		utils;
+	int         i;
 
 	init_utils(&utils);
 	run_operations(stack_a, stack_b, "pb");
 	run_operations(stack_a, stack_b, "pb");
 	if (check_revorder(stack_b) == -1)
 		run_operations(stack_a, stack_b, "rb");
-	while (check_order(stack_a) == 0 && stack_a->size != 2)
+	while (stack_a->size > 0)
 	{
 		utils = sort(stack_a, stack_b);
 		execute(&utils, stack_a, stack_b);
+
+	}
+	i = stack_b->size;
+	while (i > 0)
+	{
+		run_operations(stack_a, stack_b, "pa");
+		i--;
 	}
 }
 
@@ -32,9 +40,11 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_utils		utils;
 	t_utils		best_utils;
+	t_stack     *copy;
 	int			i;
 	int			sum;
 
+	copy = copy_stack(stack_a);
 	i = 0;
 	init_utils(&utils);
 	count_moves(stack_a->top->nbr, stack_a, &utils);
@@ -42,10 +52,10 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 	best_utils = utils;
 	sum = sum_moves(&utils);
 	init_utils(&utils);
-	while (i < stack_a->size)
+	while (i < copy->size)
 	{
-		count_moves(stack_a->top->nbr, stack_a, &utils);
-		count_moves(find_match(stack_b, stack_a->top->nbr), stack_b, &utils);
+		count_moves(copy->top->nbr, stack_a, &utils);
+		count_moves(find_match(stack_b, copy->top->nbr), stack_b, &utils);
 		if (sum_moves(&utils) == 0)
 		{
 			best_utils = utils;
@@ -59,9 +69,10 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 		}
 		else
 			init_utils(&utils);
-		stack_a->top = stack_a->top->next;
+		copy->top = copy->top->next;
 		i++;
 	}
+	free_list(copy);
 	return (best_utils);
 }
 
