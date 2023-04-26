@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:36:58 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/19 14:36:00 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:41:46 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	check_algorithm(t_stack *stack_a, t_stack *stack_b)
 {
- 	if (stack_a->size == 3)
+	if (stack_a->size == 3)
 		sort_3(stack_a, stack_b);
 	if (stack_a->size == 2)
 		sort_2(stack_a, stack_b);
-	if (stack_a->size == 5)
+	if (stack_a->size == 5 || stack_a->size == 4)
 		sort_5(stack_a, stack_b);
+	if (stack_a->size > 5)
+		sort(stack_a, stack_b);
 }
 
 void	sort_3(t_stack *stk, t_stack *stk_b)
@@ -55,6 +57,44 @@ void	sort_2(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_5(t_stack *stack_a, t_stack *stack_b)
 {
+	int	position;
+
+	position = find_posmin(stack_a);
+	nbr_rotates(stack_a, stack_b, position);
 	run_operations(stack_a, stack_b, "pb");
-	run_operations(stack_a, stack_b, "pb");
+	if (stack_a->size == 4)
+	{
+		position = find_posmax(stack_a);
+		nbr_rotates(stack_a, stack_b, position);
+		run_operations(stack_a, stack_b, "pb");
+	}
+	sort_3(stack_a, stack_b);
+	if (stack_a->size == 3 && stack_b->size == 2)
+	{
+		run_operations(stack_a, stack_b, "pa");
+		run_operations(stack_a, stack_b, "ra");
+		run_operations(stack_a, stack_b, "pa");
+	}
+	if (stack_a->size == 3)
+		run_operations(stack_a, stack_b, "pa");
+}
+
+void	nbr_rotates(t_stack *stack_a, t_stack *stack_b, int position)
+{
+	if (position > 1 && position <= 3)
+	{
+		while (position > 1)
+		{
+			run_operations(stack_a, stack_b, "ra");
+			position--;
+		}
+	}
+	if (position > 3 && position <= 5)
+	{
+		while (position < stack_a->size + 1)
+		{
+			run_operations(stack_a, stack_b, "rra");
+			position++;
+		}
+	}
 }

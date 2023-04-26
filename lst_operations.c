@@ -47,7 +47,7 @@ void	delete_top_node(t_stack *stack)
 
 	tmp = stack->top;
 	stack->top = stack->top->next;
-    stack->top->previous->previous->next = stack->top;
-    stack->top->previous = stack->top->previous->previous;
-    free(tmp);
+	stack->top->previous->previous->next = stack->top;
+	stack->top->previous = stack->top->previous->previous;
+	free(tmp);
 }

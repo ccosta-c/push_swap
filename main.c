@@ -6,45 +6,61 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/19 11:22:15 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:03:08 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	str_to_int_list(t_stack *stack, char *str)
+int	str_to_int_list(t_stack *stack, char *str)
 {
 	int		i;
 	char	**array;
 	int		tmp;
-	int		size;
+	int		len;
 
 	array = ft_split(str, ' ');
 	i = 0;
 	while (array[i] != NULL)
 		i++;
-	size = i;
+	len = i;
 	i--;
+	if (check_duplicates(array, i) == -1)
+	{
+		free_array(array, len);
+		return (-1);
+	}
 	while (i >= 0)
 	{
+		if (is_nbr(array[i]) == -1)
+		{
+			free_array(array, len);
+			return (-1);
+		}
 		tmp = ft_atoi(array[i]);
 		stack_change(create_node(tmp), stack);
 		i--;
 	}
-	free_array(array, size);
+	free_array(array, len);
+	return (0);
 }
 
-void	arg_to_int_list(char **argv, int argc, t_stack *stack)
+int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 {
 	int	tmp;
 
 	argc -= 1;
+	if (check_duplicates(argv, argc) == -1)
+		return (-1);
 	while (argc > 0)
 	{
+		if (is_nbr(argv[argc]) == -1)
+			return (-1);
 		tmp = ft_atoi(argv[argc]);
 		stack_change(create_node(tmp), stack);
 		argc--;
 	}
+	return (0);
 }
 
 void	initialize(t_stack *stack_a, t_stack *stack_b)
@@ -61,7 +77,13 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		initialize(&stack_a, &stack_b);
-		str_to_int_list(&stack_a, argv[1]);
+		if (str_to_int_list(&stack_a, argv[1]) == -1)
+		{
+			write(2, "Error\n", 6);
+			return (1);
+		}
+		if (checks(&stack_a) == -1)
+			return (1);
 		check_algorithm(&stack_a, &stack_b);
 		print_list(&stack_a);
 		ft_printf("\n");
@@ -72,9 +94,12 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		initialize(&stack_a, &stack_b);
-		arg_to_int_list(argv, argc, &stack_a);
+		if (arg_to_int_list(argv, argc, &stack_a) == -1)
+		{
+			write(2, "Error\n", 6);
+			return (1);
+		}
 		check_algorithm(&stack_a, &stack_b);
-		//print_list(&stack_a);
 		free_list(&stack_a);
 		free_list(&stack_b);
 	}
