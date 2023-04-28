@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/27 00:02:44 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 02:38:48 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	sort_big(t_stack *stack_a, t_stack *stack_b)
 		execute(&utils, stack_a, stack_b);
 
 	}
+	count_moves(find_max(stack_b), stack_b, &utils);
+	execute(&utils, stack_a, stack_b);
 	i = stack_b->size;
 	while (i > 0)
 	{
@@ -66,6 +68,7 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 		{
 			best_utils = utils;
 			sum = sum_moves(&utils);
+			init_utils(&utils);
 		}
 		else
 			init_utils(&utils);
@@ -97,9 +100,9 @@ void	count_moves(int nbr, t_stack *stack, t_utils *utils)
 	if (nbr_pos > middle_stack)
 	{
 		if (stack->id == 'a')
-			utils->a_revrotate = stack->size - nbr_pos;
+			utils->a_revrotate = (stack->size - nbr_pos);
 		if (stack->id == 'b')
-			utils->b_revrotate = stack->size - nbr_pos;
+			utils->b_revrotate = (stack->size - nbr_pos);
 	}
 }
 

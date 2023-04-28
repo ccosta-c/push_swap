@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/26 23:55:09 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 01:57:24 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	find_match(t_stack *stack, int nbr)
 	copy = copy_stack(stack);
 	match = find_min(copy);
 	if (nbr > find_max(copy))
+		return (find_max(copy));
+	if (nbr < find_min(copy))
 		return (find_max(copy));
 	else
 	{
