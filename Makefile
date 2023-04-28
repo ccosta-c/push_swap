@@ -38,11 +38,9 @@ SRCS_BONUS	= bonus
 LIBFT		= libft
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-SRC				= 	lst_operations.c checks.c sort.c utils_3.c \
-					utils.c operations.c operations_2.c algorithms.c utils_2.c \
-
+SRC				= lst_operations.c checks.c sort.c utils_3.c utils.c operations.c operations_2.c algorithms.c utils_2.c
 OBJS 			:= $(SRC:.c=.o)
-BONUS			=
+BONUS			= lst_operations.c checks.c sort.c utils_3.c utils.c operations.c operations_2.c algorithms.c utils_2.c
 OBJS_BONUS		:= $(BONUS:.c=.o)
 NAME			= push_swap
 NAME_BONUS		= push_swap_bonus
@@ -80,7 +78,7 @@ fclean: clean
 bonus: $(TARGET_BONUS)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
 	make $(MKFLAGS) -sC $(LIBFT)
-	$(CC) $(CFLAGS) bonus/main.c $(TARGET_BONUS) $(LIBFTFLAGS) -o $(NAME_BONUS) -I $(DEPS)
+	$(CC) $(CFLAGS) bonus/main_bonus.c $(TARGET_BONUS) $(LIBFTFLAGS) -o $(NAME_BONUS)
 	echo "$(GREEN)Done.$(RESET)"
 
 re: fclean all
