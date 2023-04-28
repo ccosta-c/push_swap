@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/28 01:57:24 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:38:23 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	find_index(int nbr, t_stack *stack)
 {
-	int     i;
-	t_stack *copy;
+	int		i;
+	t_stack	*copy;
 
 	copy = copy_stack(stack);
 	i = 0;
@@ -30,30 +30,39 @@ int	find_index(int nbr, t_stack *stack)
 
 int	find_match(t_stack *stack, int nbr)
 {
-	t_stack *copy;
-	int match;
+	t_stack	*copy;
+	int		match;
+	int		i;
+	int		max;
 
 	copy = copy_stack(stack);
+	i = copy->size;
+	max = find_max(copy);
 	match = find_min(copy);
-	if (nbr > find_max(copy))
-		return (find_max(copy));
+	if (nbr > max)
+	{
+		free(copy);
+		return (max);
+	}
 	if (nbr < find_min(copy))
-		return (find_max(copy));
+	{
+		free(copy);
+		return (max);
+	}
 	else
 	{
-		while (copy->size > 0)
+		while (i > 0)
 		{
-			if(copy->top->nbr < nbr && copy->top->nbr > match)
+			if (copy->top->nbr < nbr && copy->top->nbr > match)
 				match = copy->top->nbr;
 			copy->top = copy->top->next;
-			copy->size--;
+			i--;
 		}
 	}
 	free_list(copy);
 	return (match);
 }
 
-//check
 void	init_utils(t_utils *utils)
 {
 	utils->a_rotate = 0;
@@ -66,7 +75,6 @@ void	init_utils(t_utils *utils)
 	utils->rrr = 0;
 }
 
-//check
 int	sum_moves(t_utils *utils)
 {
 	int	total;
@@ -88,7 +96,6 @@ int	sum_moves(t_utils *utils)
 	return (total);
 }
 
-//check
 void	convert_rotates(t_utils *utils)
 {
 	while (utils->a_rotate >= 1 && utils->b_rotate >= 1)
@@ -103,27 +110,4 @@ void	convert_rotates(t_utils *utils)
 		utils->a_revrotate -= 1;
 		utils->b_revrotate -= 1;
 	}
-}
-
-t_stack *copy_stack( t_stack *stack)
-{
-	t_stack *copy;
-	int i;
-	int ref;
-
-	copy = malloc(sizeof (t_stack));
-	copy->size = 0;
-	copy->id = stack->id;
-	i = stack->size;
-	ref = stack->top->nbr;
-	stack->top = stack->top->previous;
-	while (i > 0)
-	{
-		stack_change(create_node(stack->top->nbr), copy);
-		stack->top = stack->top->previous;
-		i--;
-	}
-	while (stack->top->nbr != ref)
-		stack->top = stack->top->next;
-	return (copy);
 }

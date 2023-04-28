@@ -83,6 +83,6 @@ int		sum_moves(t_utils *utils);
 void	convert_rotates(t_utils *utils);
 void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b);
 void	sort_big(t_stack *stack_a, t_stack *stack_b);
-t_stack *copy_stack( t_stack *stack);
+t_stack	*copy_stack( t_stack *stack);
 
 #endif
