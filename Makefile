@@ -6,7 +6,7 @@
 #    By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 20:09:19 by ccosta-c          #+#    #+#              #
-#    Updated: 2023/04/14 11:01:08 by ccosta-c         ###   ########.fr        #
+#    Updated: 2023/04/29 00:40:06 by ccosta-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ OBJS 			:= $(SRC:.c=.o)
 BONUS			= lst_operations.c checks.c sort.c utils_3.c utils.c operations.c operations_2.c algorithms.c utils_2.c
 OBJS_BONUS		:= $(BONUS:.c=.o)
 NAME			= push_swap
-NAME_BONUS		= push_swap_bonus
+NAME_BONUS		= checker
 TARGET			= $(addprefix $(SRCS)/, $(OBJS))
 TARGET_BONUS	= $(addprefix $(SRCS_BONUS)/, $(OBJS_BONUS))
 
