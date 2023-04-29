@@ -6,44 +6,11 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 17:12:57 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:28:55 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
-
-int	str_to_int_list(t_stack *stack, char *str)
-{
-	int		i;
-	char	**array;
-	int		tmp;
-	int		len;
-
-	array = ft_split(str, ' ');
-	i = 0;
-	while (array[i] != NULL)
-		i++;
-	len = i;
-	i--;
-	if (check_duplicates(array, i) == -1)
-	{
-		free_array(array, len);
-		return (-1);
-	}
-	while (i >= 0)
-	{
-		if (is_nbr(array[i]) == -1)
-		{
-			free_array(array, len);
-			return (-1);
-		}
-		tmp = ft_atoi(array[i]);
-		stack_change(create_node(tmp), stack);
-		i--;
-	}
-	free_array(array, len);
-	return (0);
-}
 
 int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 {
@@ -86,7 +53,7 @@ int	main(int argc, char **argv)
 		{
 			free_list (stack_a);
 			free_list (stack_b);
-			write (2, "ERROR\n", 6);
+			write (2, "Error\n", 6);
 			return (-1);
 		}
 		if (check_order(stack_a) == 0)

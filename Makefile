@@ -6,7 +6,7 @@
 #    By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 20:09:19 by ccosta-c          #+#    #+#              #
-#    Updated: 2023/04/29 00:40:06 by ccosta-c         ###   ########.fr        #
+#    Updated: 2023/04/29 17:24:52 by ccosta-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ LIBFT		= libft
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 SRC				= lst_operations.c checks.c sort.c utils_3.c utils.c operations.c operations_2.c algorithms.c utils_2.c
 OBJS 			:= $(SRC:.c=.o)
-BONUS			= lst_operations.c checks.c sort.c utils_3.c utils.c operations.c operations_2.c algorithms.c utils_2.c
+BONUS			= lst_operations.c checks.c utils.c operations.c operations_2.c utils_2.c
 OBJS_BONUS		:= $(BONUS:.c=.o)
 NAME			= push_swap
 NAME_BONUS		= checker
