@@ -6,41 +6,37 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 16:37:37 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:10:02 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation)
+int	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation)
 {
 	if (ft_strncmp("sa", operation, 2) == 0)
-		swap(stack_a);
+		return (swap(stack_a));
 	if (ft_strncmp("sb", operation, 2) == 0)
-		swap(stack_b);
+		return (swap(stack_b));
 	if (ft_strncmp("ss", operation, 2) == 0)
-		ss(stack_a, stack_b);
+		return (ss(stack_a, stack_b));
 	if (ft_strncmp("pa", operation, 2) == 0)
-		push(stack_b, stack_a);
+		return (push(stack_b, stack_a));
 	if (ft_strncmp("pb", operation, 2) == 0)
-		push(stack_a, stack_b);
+		return (push(stack_a, stack_b));
 	if (ft_strncmp("ra", operation, 2) == 0)
-		rotate(stack_a);
+		return (rotate(stack_a));
 	if (ft_strncmp("rb", operation, 2) == 0)
-		rotate(stack_b);
-	run_operations_2(stack_a, stack_b, operation);
-}
-
-void	run_operations_2(t_stack *stack_a, t_stack *stack_b, char *operation)
-{
+		return (rotate(stack_b));
 	if (ft_strncmp("rra", operation, 3) == 0)
-		reverse_rotate(stack_a);
+		return (reverse_rotate(stack_a));
 	if (ft_strncmp("rrb", operation, 3) == 0)
-		reverse_rotate(stack_b);
+		return (reverse_rotate(stack_b));
 	if (ft_strncmp("rrr", operation, 3) == 0)
-		rrr(stack_a, stack_b);
+		return (rrr(stack_a, stack_b));
 	if (ft_strncmp("rr", operation, 3) == 0)
-		rr(stack_a, stack_b);
+		return (rr(stack_a, stack_b));
+	return (-1);
 }
 
 int	swap(t_stack *stack)

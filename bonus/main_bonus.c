@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 16:43:56 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:12:57 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,38 @@ int	main(int argc, char **argv)
 		stack_a = malloc(sizeof (t_stack));
 		stack_b = malloc(sizeof (t_stack));
 		initialize(stack_a, stack_b);
-		arg_to_int_list(argv, argc, stack_a);
+		if (arg_to_int_list(argv, argc, stack_a) == -1)
+		{
+			free_list (stack_a);
+			free_list (stack_b);
+			write (2, "ERROR\n", 6);
+			return (-1);
+		}
 		if (check_order(stack_a) == 0)
+		{
+			free_list (stack_a);
+			free_list (stack_b);
 			return (0);
+		}
 		while (1)
 		{
 			txt = get_next_line(0);
 			if (!txt)
 				break ;
-			run_operations(stack_a, stack_b, txt);
+			if (run_operations(stack_a, stack_b, txt) != 0)
+			{
+				free_list (stack_a);
+				free_list (stack_b);
+				free(txt);
+				write (2, "ERROR\n", 6);
+				return (-1);
+			}
 			free(txt);
 		}
 		if (check_order(stack_a) == 0 && stack_b->size == 0)
 			write(1, "OK\n", 3);
+		else
+			write(1, "KO\n", 3);
 		free_list (stack_a);
 		free_list (stack_b);
 		free(txt);
