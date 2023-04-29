@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/28 17:10:31 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:37:37 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,32 @@
 void	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation)
 {
 	if (ft_strncmp("sa", operation, 2) == 0)
-		if (swap(stack_a) == 0)
-			ft_printf("sa\n");
+		swap(stack_a);
 	if (ft_strncmp("sb", operation, 2) == 0)
-		if (swap(stack_b) == 0)
-			ft_printf("sb\n");
+		swap(stack_b);
 	if (ft_strncmp("ss", operation, 2) == 0)
-		if (ss(stack_a, stack_b) == 0)
-			ft_printf("ss\n");
+		ss(stack_a, stack_b);
 	if (ft_strncmp("pa", operation, 2) == 0)
-		if (push(stack_b, stack_a) == 0)
-			ft_printf("pa\n");
+		push(stack_b, stack_a);
 	if (ft_strncmp("pb", operation, 2) == 0)
-		if (push(stack_a, stack_b) == 0)
-			ft_printf("pb\n");
+		push(stack_a, stack_b);
 	if (ft_strncmp("ra", operation, 2) == 0)
-		if (rotate(stack_a) == 0)
-			ft_printf("ra\n");
+		rotate(stack_a);
 	if (ft_strncmp("rb", operation, 2) == 0)
-		if (rotate(stack_b) == 0)
-			ft_printf("rb\n");
+		rotate(stack_b);
 	run_operations_2(stack_a, stack_b, operation);
 }
 
 void	run_operations_2(t_stack *stack_a, t_stack *stack_b, char *operation)
 {
 	if (ft_strncmp("rra", operation, 3) == 0)
-		if (reverse_rotate(stack_a) == 0)
-			ft_printf("rra\n");
+		reverse_rotate(stack_a);
 	if (ft_strncmp("rrb", operation, 3) == 0)
-		if (reverse_rotate(stack_b) == 0)
-			ft_printf("rrb\n");
+		reverse_rotate(stack_b);
 	if (ft_strncmp("rrr", operation, 3) == 0)
-		if (rrr(stack_a, stack_b) == 0)
-			ft_printf("rrr\n");
+		rrr(stack_a, stack_b);
 	if (ft_strncmp("rr", operation, 3) == 0)
-		if (rr(stack_a, stack_b) == 0)
-			ft_printf("rr\n");
+		rr(stack_a, stack_b);
 }
 
 int	swap(t_stack *stack)

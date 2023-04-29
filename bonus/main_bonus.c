@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 00:42:58 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:43:56 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,26 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc == 2)
+	if (argc > 2)
 	{
 		stack_a = malloc(sizeof (t_stack));
 		stack_b = malloc(sizeof (t_stack));
 		initialize(stack_a, stack_b);
-		str_to_int_list(stack_a, argv[1]);
-		print_list(stack_a);
-		txt = get_next_line(0);
-		ft_printf("!!!%s", txt);
+		arg_to_int_list(argv, argc, stack_a);
+		if (check_order(stack_a) == 0)
+			return (0);
+		while (1)
+		{
+			txt = get_next_line(0);
+			if (!txt)
+				break ;
+			run_operations(stack_a, stack_b, txt);
+			free(txt);
+		}
+		if (check_order(stack_a) == 0 && stack_b->size == 0)
+			write(1, "OK\n", 3);
+		free_list (stack_a);
+		free_list (stack_b);
+		free(txt);
 	}
 }

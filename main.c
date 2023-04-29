@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/28 17:07:41 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:40:37 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,12 @@ int	main(int argc, char **argv)
 		if (arg_to_int_list(argv, argc, stack_a) == -1)
 		{
 			write(2, "Error\n", 6);
+			free_list(stack_a);
+			free_list(stack_b);
+			return (-1);
+		}
+		if (checks(stack_a) == -1)
+		{
 			free_list(stack_a);
 			free_list(stack_b);
 			return (-1);
