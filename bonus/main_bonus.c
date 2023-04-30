@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 17:28:55 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:43:47 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,8 @@ void	initialize(t_stack *stack_a, t_stack *stack_b)
 	stack_b->id = 'b';
 }
 
-int	main(int argc, char **argv)
+int create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
 {
-	char	*txt;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-
-	if (argc > 2)
-	{
-		stack_a = malloc(sizeof (t_stack));
-		stack_b = malloc(sizeof (t_stack));
-		initialize(stack_a, stack_b);
 		if (arg_to_int_list(argv, argc, stack_a) == -1)
 		{
 			free_list (stack_a);
@@ -60,8 +51,24 @@ int	main(int argc, char **argv)
 		{
 			free_list (stack_a);
 			free_list (stack_b);
-			return (0);
+			return (-1);
 		}
+		return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	char	*txt;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	if (argc > 2)
+	{
+		stack_a = malloc(sizeof (t_stack));
+		stack_b = malloc(sizeof (t_stack));
+		initialize(stack_a, stack_b);
+		if (create_check(stack_a, stack_b, argv, argc) == -1)
+			return (-1);
 		while (1)
 		{
 			txt = get_next_line(0);

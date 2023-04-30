@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:06:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 16:59:20 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:35:45 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void	convert_rotates(t_utils *utils);
 void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b);
 void	sort_big(t_stack *stack_a, t_stack *stack_b);
 t_stack	*copy_stack( t_stack *stack);
+int		create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc);
 
 #endif
