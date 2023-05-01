@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:06:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 18:20:24 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:46:38 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void	free_lists(t_stack *stack_a, t_stack *stack_b);
 void	str_handler(t_stack *stack_a, t_stack *stack_b, char **argv);
 void	argv_handler(t_stack *stack_a, t_stack *stack_b, char **argv, int argc);
 int		parse_array(char **array, int len, t_stack *stack);
+int		check_dups_argc(char **array, int i);
 
 #endif

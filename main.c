@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 19:35:02 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:02:34 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	str_to_int_list(t_stack *stack, char *str)
 	int		len;
 
 	array = ft_split(str, ' ');
+	if (array == NULL)
+		return (-1);
 	i = 0;
 	while (array[i] != NULL)
 		i++;
@@ -37,8 +39,8 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 {
 	int	tmp;
 
-	argc -= 1;
-	if (check_dups(argv, argc) == -1)
+	argc--;
+	if (check_dups_argc(argv, argc) == -1)
 		return (-1);
 	while (argc > 0)
 	{

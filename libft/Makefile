@@ -27,7 +27,7 @@ OBJS := $(SRC:.c=.o)
 
 COMPILER = cc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

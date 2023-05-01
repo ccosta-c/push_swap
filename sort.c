@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 19:33:24 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:02:28 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,22 @@ void	count_moves(int nbr, t_stack *stack, t_utils *utils)
 		if (stack->id == 'b')
 			utils->b_revrotate = (stack->size - nbr_pos);
 	}
+}
+
+int	check_dups_argc(char **array, int i)
+{
+	int	j;
+
+	while (i >= 0)
+	{
+		j = i - 1;
+		while (j > 0)
+		{
+			if (ft_atoi(array[j]) == ft_atoi(array[i]))
+				return (-1);
+			j--;
+		}
+		i--;
+	}
+	return (0);
 }

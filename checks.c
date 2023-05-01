@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 19:56:45 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:53:25 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_dups(char **array, int i)
 	while (i >= 0)
 	{
 		j = i - 1;
-		while (j > 0)
+		while (j >= 0)
 		{
 			if (ft_atoi(array[j]) == ft_atoi(array[i]))
 				return (-1);
