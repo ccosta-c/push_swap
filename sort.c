@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/28 14:37:54 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:14:29 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 		if (sum_moves(&utils) == 0)
 		{
 			best_utils = utils;
-			sum = sum_moves(&utils);
 			break ;
 		}
 		if (sum_moves(&utils) < sum)
@@ -107,53 +106,40 @@ void	count_moves(int nbr, t_stack *stack, t_utils *utils)
 
 void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b)
 {
-	if (utils->rr)
+	while (utils->rr)
 	{
-		while (utils->rr)
-		{
-			run_operations(stack_a, stack_b, "rr");
-			utils->rr--;
-		}
+		run_operations(stack_a, stack_b, "rr");
+		utils->rr--;
 	}
-	if (utils->rrr)
+	while (utils->rrr)
 	{
-		while (utils->rrr)
-		{
-			run_operations(stack_a, stack_b, "rrr");
-			utils->rrr--;
-		}
+		run_operations(stack_a, stack_b, "rrr");
+		utils->rrr--;
 	}
-	if (utils->a_rotate)
+	while (utils->a_rotate)
 	{
-		while (utils->a_rotate)
-		{
-			run_operations(stack_a, stack_b, "ra");
-			utils->a_rotate--;
-		}
+		run_operations(stack_a, stack_b, "ra");
+		utils->a_rotate--;
 	}
-	if (utils->b_rotate)
+	execute_two(utils, stack_a, stack_b);
+}
+
+void	execute_two(t_utils *utils, t_stack *stack_a, t_stack *stack_b)
+{
+	while (utils->b_rotate)
 	{
-		while (utils->b_rotate)
-		{
-			run_operations(stack_a, stack_b, "rb");
-			utils->b_rotate--;
-		}
+		run_operations(stack_a, stack_b, "rb");
+		utils->b_rotate--;
 	}
-	if (utils->a_revrotate)
+	while (utils->a_revrotate)
 	{
-		while (utils->a_revrotate)
-		{
-			run_operations(stack_a, stack_b, "rra");
-			utils->a_revrotate--;
-		}
+		run_operations(stack_a, stack_b, "rra");
+		utils->a_revrotate--;
 	}
-	if (utils->b_revrotate)
+	while (utils->b_revrotate)
 	{
-		while (utils->b_revrotate)
-		{
-			run_operations(stack_a, stack_b, "rrb");
-			utils->b_revrotate--;
-		}
+		run_operations(stack_a, stack_b, "rrb");
+		utils->b_revrotate--;
 	}
 	run_operations(stack_a, stack_b, "pb");
 }
