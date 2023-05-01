@@ -66,7 +66,7 @@ int	find_posmax(t_stack *stack)
 
 int	is_nbr(char *str)
 {
-	if (str[0] == '0' && ft_atoi(str) == 0 && str[0] == '\0')
+	if (str[0] == '0' && ft_atoi(str) == 0 && str[1] == '\0')
 		return (1);
 	else if (ft_atoi(str) == 0)
 		return (-1);

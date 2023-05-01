@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 10:51:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 17:24:34 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:51:37 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_nbr(char *str)
 {
-	if (str[0] == '0' && ft_atoi(str) == 0 && str[0] == '\0')
+	if (str[0] == '0' && ft_atoi(str) == 0 && str[1] == '\0')
 		return (1);
 	else if (ft_atoi(str) == 0)
 		return (-1);
@@ -23,14 +23,26 @@ int	is_nbr(char *str)
 	return (-1);
 }
 
-void	init_utils(t_utils *utils)
+void	initialize(t_stack *stack_a, t_stack *stack_b)
 {
-	utils->a_rotate = 0;
-	utils->b_rotate = 0;
-	utils->a_data = 0;
-	utils->b_data = 0;
-	utils->a_revrotate = 0;
-	utils->b_revrotate = 0;
-	utils->rr = 0;
-	utils->rrr = 0;
+	stack_a->size = 0;
+	stack_b->size = 0;
+	stack_a->id = 'a';
+	stack_b->id = 'b';
+}
+
+void	free_lists(t_stack *stack_a, t_stack *stack_b)
+{
+	while (stack_a->size > 0)
+	{
+		delete_top_node(stack_a);
+		stack_a->size--;
+	}
+	free(stack_a);
+	while (stack_b->size > 0)
+	{
+		delete_top_node(stack_b);
+		stack_b->size--;
+	}
+	free(stack_b);
 }

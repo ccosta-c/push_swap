@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:06:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 14:26:17 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:54:06 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ void	free_array(char **array, int y);
 int		run_operations(t_stack *stack_a, t_stack *stack_b, char *operation);
 int		run_operations_2(t_stack *stack_a, t_stack *stack_b, char *operation);
 int		check_order(t_stack *stack);
-int		check_duplicates(char **array, int i);
+int		check_dups(char **array, int i);
 int		checks(t_stack *stack_a);
 int		is_nbr(char *str);
 t_stack	*copy_stack( t_stack *stack);
 int		create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc);
 int		parse_operations(t_stack *stack_a, t_stack *stack_b);
+void	free_lists(t_stack *stack_a, t_stack *stack_b);
 
 #endif

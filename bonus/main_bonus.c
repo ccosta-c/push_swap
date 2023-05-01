@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 14:27:06 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:58:07 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 	int	tmp;
 
 	argc -= 1;
-	if (check_duplicates(argv, argc) == -1)
+	if (check_dups(argv, argc) == -1)
 		return (-1);
 	while (argc > 0)
 	{
@@ -28,14 +28,6 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 		argc--;
 	}
 	return (0);
-}
-
-void	initialize(t_stack *stack_a, t_stack *stack_b)
-{
-	stack_a->size = 0;
-	stack_b->size = 0;
-	stack_a->id = 'a';
-	stack_b->id = 'b';
 }
 
 int	create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
@@ -53,6 +45,12 @@ int	create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
 		free_list (stack_b);
 		return (-1);
 	}
+	if (parse_operations(stack_a, stack_b) == -1)
+		return (-1);
+	if (check_order(stack_a) == 0 && stack_b->size == 0)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
 	return (0);
 }
 
@@ -61,22 +59,22 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
+	if (argc < 2)
+		return (0);
+	stack_a = malloc(sizeof(t_stack));
+	stack_b = malloc(sizeof(t_stack));
+	initialize(stack_a, stack_b);
+	if (argc == 2)
+	{
+
+	}
 	if (argc > 2)
 	{
-		stack_a = malloc(sizeof (t_stack));
-		stack_b = malloc(sizeof (t_stack));
-		initialize(stack_a, stack_b);
 		if (create_check(stack_a, stack_b, argv, argc) == -1)
 			return (-1);
-		if (parse_operations(stack_a, stack_b) == -1)
-			return (-1);
-		if (check_order(stack_a) == 0 && stack_b->size == 0)
-			write(1, "OK\n", 3);
-		else
-			write(1, "KO\n", 3);
-		free_list (stack_a);
-		free_list (stack_b);
 	}
+	free_lists(stack_a, stack_b);
+	return (0);
 }
 
 int	parse_operations(t_stack *stack_a, t_stack *stack_b)

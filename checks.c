@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/28 11:56:13 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:37:25 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int	check_order(t_stack *stack)
 	return (0);
 }
 
-int	check_duplicates(char **array, int i)
+int	check_dups(char **array, int i)
 {
 	int	j;
 
 	while (i >= 0)
 	{
 		j = i - 1;
-		while (j >= 0)
+		while (j > 0)
 		{
 			if (ft_atoi(array[j]) == ft_atoi(array[i]))
 				return (-1);
@@ -76,5 +76,23 @@ int	check_revorder(t_stack *stack)
 		i--;
 	}
 	free_list(copy);
+	return (0);
+}
+
+int	parse_array(char **array, int len, t_stack *stack)
+{
+	int	i;
+	int	tmp;
+
+	tmp = 0;
+	i = len - 1;
+	while (i >= 0)
+	{
+		if (is_nbr(array[i]) == -1)
+			return (-1);
+		tmp = ft_atoi(array[i]);
+		stack_change(create_node(tmp), stack);
+		i--;
+	}
 	return (0);
 }

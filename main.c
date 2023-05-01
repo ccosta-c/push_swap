@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 15:47:13 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:35:02 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	str_to_int_list(t_stack *stack, char *str)
 {
 	int		i;
 	char	**array;
-	int		tmp;
 	int		len;
 
 	array = ft_split(str, ' ');
@@ -25,21 +24,10 @@ int	str_to_int_list(t_stack *stack, char *str)
 		i++;
 	len = i;
 	i--;
-	if (check_duplicates(array, i) == -1)
+	if (check_dups(array, i) == -1 || parse_array(array, len, stack) == -1)
 	{
 		free_array(array, len);
 		return (-1);
-	}
-	while (i >= 0)
-	{
-		if (is_nbr(array[i]) == -1)
-		{
-			free_array(array, len);
-			return (-1);
-		}
-		tmp = ft_atoi(array[i]);
-		stack_change(create_node(tmp), stack);
-		i--;
 	}
 	free_array(array, len);
 	return (0);
@@ -50,7 +38,7 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 	int	tmp;
 
 	argc -= 1;
-	if (check_duplicates(argv, argc) == -1)
+	if (check_dups(argv, argc) == -1)
 		return (-1);
 	while (argc > 0)
 	{

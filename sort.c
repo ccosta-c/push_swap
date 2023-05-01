@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:40:03 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 15:14:29 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:33:24 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,27 @@ void	sort_big(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+int	pls_work(t_utils *best_utils, t_utils *utils)
+{
+	if (sum_moves(utils) == 0)
+	{
+		*best_utils = *utils;
+		return (-1);
+	}
+	if (sum_moves(utils) < (*best_utils).sum)
+	{
+		*best_utils = *utils;
+		(*best_utils).sum = sum_moves(utils);
+	}
+	return (0);
+}
+
 t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_utils		utils;
 	t_utils		best_utils;
 	t_stack		*copy;
 	int			i;
-	int			sum;
 
 	copy = copy_stack(stack_a);
 	i = 0;
@@ -51,25 +65,14 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 	count_moves(stack_a->top->nbr, stack_a, &utils);
 	count_moves(find_match(stack_b, stack_a->top->nbr), stack_b, &utils);
 	best_utils = utils;
-	sum = sum_moves(&utils);
-	init_utils(&utils);
+	best_utils.sum = sum_moves(&utils);
 	while (i < copy->size)
 	{
+		init_utils(&utils);
 		count_moves(copy->top->nbr, stack_a, &utils);
 		count_moves(find_match(stack_b, copy->top->nbr), stack_b, &utils);
-		if (sum_moves(&utils) == 0)
-		{
-			best_utils = utils;
+		if (pls_work(&best_utils, &utils) == -1)
 			break ;
-		}
-		if (sum_moves(&utils) < sum)
-		{
-			best_utils = utils;
-			sum = sum_moves(&utils);
-			init_utils(&utils);
-		}
-		else
-			init_utils(&utils);
 		copy->top = copy->top->next;
 		i++;
 	}
@@ -102,44 +105,4 @@ void	count_moves(int nbr, t_stack *stack, t_utils *utils)
 		if (stack->id == 'b')
 			utils->b_revrotate = (stack->size - nbr_pos);
 	}
-}
-
-void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b)
-{
-	while (utils->rr)
-	{
-		run_operations(stack_a, stack_b, "rr");
-		utils->rr--;
-	}
-	while (utils->rrr)
-	{
-		run_operations(stack_a, stack_b, "rrr");
-		utils->rrr--;
-	}
-	while (utils->a_rotate)
-	{
-		run_operations(stack_a, stack_b, "ra");
-		utils->a_rotate--;
-	}
-	execute_two(utils, stack_a, stack_b);
-}
-
-void	execute_two(t_utils *utils, t_stack *stack_a, t_stack *stack_b)
-{
-	while (utils->b_rotate)
-	{
-		run_operations(stack_a, stack_b, "rb");
-		utils->b_rotate--;
-	}
-	while (utils->a_revrotate)
-	{
-		run_operations(stack_a, stack_b, "rra");
-		utils->a_revrotate--;
-	}
-	while (utils->b_revrotate)
-	{
-		run_operations(stack_a, stack_b, "rrb");
-		utils->b_revrotate--;
-	}
-	run_operations(stack_a, stack_b, "pb");
 }
