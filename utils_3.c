@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 01:55:04 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 15:02:26 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:32:38 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	init_utils(t_utils *utils)
 	utils->b_revrotate = 0;
 	utils->rr = 0;
 	utils->rrr = 0;
+	utils->sum = 0;
 }
 
 int	sum_moves(t_utils *utils)

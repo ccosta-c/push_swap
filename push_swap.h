@@ -6,7 +6,7 @@
 /*   By: ccosta-c <ccosta-c@student.42porto.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:06:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 15:05:00 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:07:35 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_utils
 	int		b_rotate;
 	int		rr;
 	int		rrr;
+	int 	sum;
 }			t_utils;
 
 int		str_to_int_list(t_stack *stack, char *str);
@@ -72,7 +73,7 @@ int		check_revorder(t_stack *stack);
 int		check_duplicates(char **array, int i);
 int		checks(t_stack *stack_a);
 int		is_nbr(char *str);
-t_utils	sort(t_stack *stack_a, t_stack *stack_b);
+void	sort(t_utils *utils, t_stack *stack_a, t_stack *stack_b);
 int		find_match(t_stack *stack, int nbr);
 int		find_max(t_stack *stack);
 int		find_min(t_stack *stack);
@@ -85,5 +86,10 @@ void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b);
 void	sort_big(t_stack *stack_a, t_stack *stack_b);
 t_stack	*copy_stack( t_stack *stack);
 void	execute_two(t_utils *utils, t_stack *stack_a, t_stack *stack_b);
+void	free_lists(t_stack *stack_a, t_stack *stack_b);
+void	str_handler(t_stack *stack_a, t_stack *stack_b, char **argv);
+void	argv_handler(t_stack *stack_a, t_stack *stack_b, char **argv, int argc);
+void	parse(t_stack *stack_a, t_stack *stack_b, t_utils *best_utils, t_utils *utils);
+void	copy_data(t_utils *utils, t_utils *best_utils);
 
 #endif

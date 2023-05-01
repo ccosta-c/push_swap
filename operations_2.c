@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:21:33 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 19:39:56 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:39:17 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ int	rrr(t_stack *stack_a, t_stack *stack_b)
 	if (reverse_rotate(stack_b) == 1)
 		return (1);
 	return (0);
+}
+
+void	initialize(t_stack *stack_a, t_stack *stack_b)
+{
+	stack_a->size = 0;
+	stack_b->size = 0;
+	stack_a->id = 'a';
+	stack_b->id = 'b';
 }

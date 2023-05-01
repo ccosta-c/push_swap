@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:42:25 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 16:40:37 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:47:13 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,38 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 	return (0);
 }
 
-void	initialize(t_stack *stack_a, t_stack *stack_b)
+void	str_handler(t_stack *stack_a, t_stack *stack_b, char **argv)
 {
-	stack_a->size = 0;
-	stack_b->size = 0;
-	stack_a->id = 'a';
-	stack_b->id = 'b';
+	if (str_to_int_list(stack_a, argv[1]) == -1)
+	{
+		write(2, "Error\n", 6);
+		free_lists(stack_a, stack_b);
+		return ;
+	}
+	if (checks(stack_a) == -1)
+	{
+		free_lists(stack_a, stack_b);
+		return ;
+	}
+	check_algorithm(stack_a, stack_b);
+	free_lists(stack_a, stack_b);
+}
+
+void	argv_handler(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
+{
+	if (arg_to_int_list(argv, argc, stack_a) == -1)
+	{
+		write(2, "Error\n", 6);
+		free_lists(stack_a, stack_b);
+		return ;
+	}
+	if (checks(stack_a) == -1)
+	{
+		free_lists(stack_a, stack_b);
+		return ;
+	}
+	check_algorithm(stack_a, stack_b);
+	free_lists(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -76,49 +102,14 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
+	if (argc < 2)
+		return (0);
+	stack_a = malloc(sizeof (t_stack));
+	stack_b = malloc(sizeof (t_stack));
+	initialize(stack_a, stack_b);
 	if (argc == 2)
-	{
-		stack_a = malloc(sizeof (t_stack));
-		stack_b = malloc(sizeof (t_stack));
-		initialize(stack_a, stack_b);
-		if (str_to_int_list(stack_a, argv[1]) == -1)
-		{
-			write(2, "Error\n", 6);
-			free_list(stack_a);
-			free_list(stack_b);
-			return (-1);
-		}
-		if (checks(stack_a) == -1)
-		{
-			free_list(stack_a);
-			free_list(stack_b);
-			return (-1);
-		}
-		check_algorithm(stack_a, stack_b);
-		free_list(stack_a);
-		free_list(stack_b);
-	}
+		str_handler(stack_a, stack_b, argv);
 	if (argc > 2)
-	{
-		stack_a = malloc(sizeof (t_stack));
-		stack_b = malloc(sizeof (t_stack));
-		initialize(stack_a, stack_b);
-		if (arg_to_int_list(argv, argc, stack_a) == -1)
-		{
-			write(2, "Error\n", 6);
-			free_list(stack_a);
-			free_list(stack_b);
-			return (-1);
-		}
-		if (checks(stack_a) == -1)
-		{
-			free_list(stack_a);
-			free_list(stack_b);
-			return (-1);
-		}
-		check_algorithm(stack_a, stack_b);
-		free_list(stack_a);
-		free_list(stack_b);
-	}
+		argv_handler(stack_a, stack_b, argv, argc);
 	return (0);
 }

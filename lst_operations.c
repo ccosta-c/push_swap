@@ -51,3 +51,43 @@ void	delete_top_node(t_stack *stack)
 	stack->top->previous = stack->top->previous->previous;
 	free(tmp);
 }
+
+void	execute(t_utils *utils, t_stack *stack_a, t_stack *stack_b)
+{
+	while (utils->rr)
+	{
+		run_operations(stack_a, stack_b, "rr");
+		utils->rr--;
+	}
+	while (utils->rrr)
+	{
+		run_operations(stack_a, stack_b, "rrr");
+		utils->rrr--;
+	}
+	while (utils->a_rotate)
+	{
+		run_operations(stack_a, stack_b, "ra");
+		utils->a_rotate--;
+	}
+	execute_two(utils, stack_a, stack_b);
+}
+
+void	execute_two(t_utils *utils, t_stack *stack_a, t_stack *stack_b)
+{
+	while (utils->b_rotate)
+	{
+		run_operations(stack_a, stack_b, "rb");
+		utils->b_rotate--;
+	}
+	while (utils->a_revrotate)
+	{
+		run_operations(stack_a, stack_b, "rra");
+		utils->a_revrotate--;
+	}
+	while (utils->b_revrotate)
+	{
+		run_operations(stack_a, stack_b, "rrb");
+		utils->b_revrotate--;
+	}
+	run_operations(stack_a, stack_b, "pb");
+}

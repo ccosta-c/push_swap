@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:54:32 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/28 11:14:17 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:30:17 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ void	free_list(t_stack *stack)
 		stack->size--;
 	}
 	free(stack);
+}
+
+void	free_lists(t_stack *stack_a, t_stack *stack_b)
+{
+	while (stack_a->size > 0)
+	{
+		delete_top_node(stack_a);
+		stack_a->size--;
+	}
+	free(stack_a);
+	while (stack_b->size > 0)
+	{
+		delete_top_node(stack_b);
+		stack_b->size--;
+	}
+	free(stack_b);
 }
 
 void	free_array(char **array, int y)
