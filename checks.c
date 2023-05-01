@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:03:07 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 19:37:25 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:56:45 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	check_revorder(t_stack *stack)
 	{
 		if (copy->top->nbr < copy->top->next->nbr)
 		{
-			return (-1);
 			free_list(copy);
+			return (-1);
 		}
 		copy->top = copy->top->next;
 		i--;
