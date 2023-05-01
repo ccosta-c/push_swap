@@ -25,26 +25,6 @@ void	print_list(t_stack *stack)
 	}
 }
 
-void	ft_print_array(char **array)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < 3)
-	{
-		while (array && array[i][j] != '\0')
-		{
-			ft_printf("%c", array[i][j]);
-			j++;
-		}
-		i++;
-		j = 0;
-		ft_printf("\n");
-	}
-}
-
 void	free_list(t_stack *stack)
 {
 	while (stack->size > 0)
