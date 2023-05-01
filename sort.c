@@ -76,7 +76,7 @@ t_utils	sort(t_stack *stack_a, t_stack *stack_b)
 		copy->top = copy->top->next;
 		i++;
 	}
-	free_list(copy);
+	free(copy);
 	return (best_utils);
 }
 

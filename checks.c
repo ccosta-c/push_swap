@@ -30,13 +30,13 @@ int	check_order(t_stack *stack)
 	{
 		if (copy->top->nbr > copy->top->next->nbr)
 		{
-			free_list(copy);
+			free(copy);
 			return (-1);
 		}
 		copy->top = copy->top->next;
 		i--;
 	}
-	free_list(copy);
+	free(copy);
 	return (0);
 }
 
@@ -69,13 +69,13 @@ int	check_revorder(t_stack *stack)
 	{
 		if (copy->top->nbr < copy->top->next->nbr)
 		{
-			free_list(copy);
+			free(copy);
 			return (-1);
 		}
 		copy->top = copy->top->next;
 		i--;
 	}
-	free_list(copy);
+	free(copy);
 	return (0);
 }
 

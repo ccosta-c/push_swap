@@ -24,7 +24,7 @@ int	find_index(int nbr, t_stack *stack)
 		i++;
 		copy->top = copy->top->next;
 	}
-	free_list(copy);
+	free(copy);
 	return (i);
 }
 
@@ -41,7 +41,7 @@ int	find_match(t_stack *stack, int nbr)
 	match = find_min(copy);
 	if ((nbr > max) || (nbr < find_min(copy)))
 	{
-		free_list(copy);
+		free(copy);
 		return (max);
 	}
 	while (i > 0)
@@ -51,7 +51,7 @@ int	find_match(t_stack *stack, int nbr)
 		copy->top = copy->top->next;
 		i--;
 	}
-	free_list(copy);
+	free(copy);
 	return (match);
 }
 

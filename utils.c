@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:54:32 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 15:30:17 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:37:08 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,10 @@ void	free_array(char **array, int y)
 t_stack	*copy_stack( t_stack *stack)
 {
 	t_stack	*copy;
-	int		i;
-	int		ref;
 
 	copy = malloc(sizeof (t_stack));
-	copy->size = 0;
+	copy->size = stack->size;
+	copy->top = stack->top;
 	copy->id = stack->id;
-	i = stack->size;
-	ref = stack->top->nbr;
-	stack->top = stack->top->previous;
-	while (i > 0)
-	{
-		stack_change(create_node(stack->top->nbr), copy);
-		stack->top = stack->top->previous;
-		i--;
-	}
-	while (stack->top->nbr != ref)
-		stack->top = stack->top->next;
 	return (copy);
 }
