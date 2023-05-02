@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:32:42 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/29 17:10:02 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/02 00:27:46 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	run_operations(t_stack *stack_a, t_stack *stack_b, char *operation)
 {
-	if (ft_strncmp("sa", operation, 2) == 0)
+	if (ft_strncmp("sa\n", operation, 3) == 0)
 		return (swap(stack_a));
-	if (ft_strncmp("sb", operation, 2) == 0)
+	if (ft_strncmp("sb\n", operation, 3) == 0)
 		return (swap(stack_b));
-	if (ft_strncmp("ss", operation, 2) == 0)
+	if (ft_strncmp("ss\n", operation, 3) == 0)
 		return (ss(stack_a, stack_b));
-	if (ft_strncmp("pa", operation, 2) == 0)
+	if (ft_strncmp("pa\n", operation, 3) == 0)
 		return (push(stack_b, stack_a));
-	if (ft_strncmp("pb", operation, 2) == 0)
+	if (ft_strncmp("pb\n", operation, 3) == 0)
 		return (push(stack_a, stack_b));
-	if (ft_strncmp("ra", operation, 2) == 0)
+	if (ft_strncmp("ra\n", operation, 3) == 0)
 		return (rotate(stack_a));
-	if (ft_strncmp("rb", operation, 2) == 0)
+	if (ft_strncmp("rb\n", operation, 3) == 0)
 		return (rotate(stack_b));
-	if (ft_strncmp("rra", operation, 3) == 0)
+	if (ft_strncmp("rra\n", operation, 4) == 0)
 		return (reverse_rotate(stack_a));
-	if (ft_strncmp("rrb", operation, 3) == 0)
+	if (ft_strncmp("rrb\n", operation, 4) == 0)
 		return (reverse_rotate(stack_b));
-	if (ft_strncmp("rrr", operation, 3) == 0)
+	if (ft_strncmp("rrr\n", operation, 4) == 0)
 		return (rrr(stack_a, stack_b));
-	if (ft_strncmp("rr", operation, 3) == 0)
+	if (ft_strncmp("rr\n", operation, 3) == 0)
 		return (rr(stack_a, stack_b));
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/01 18:58:07 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:20:30 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,29 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 
 int	create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
 {
+	char	*txt;
+
 	if (arg_to_int_list(argv, argc, stack_a) == -1)
 	{
-		free_list (stack_a);
-		free_list (stack_b);
 		write (2, "Error\n", 6);
 		return (-1);
 	}
 	if (check_order(stack_a) == 0)
+		return (-1);
+	while (1)
 	{
-		free_list (stack_a);
-		free_list (stack_b);
-		return (-1);
+		txt = get_next_line(0);
+		if (!txt)
+			break ;
+		if (run_operations(stack_a, stack_b, txt) != 0)
+		{
+			free(txt);
+			write (2, "ERROR\n", 6);
+			return (-1);
+		}
+		free(txt);
 	}
-	if (parse_operations(stack_a, stack_b) == -1)
-		return (-1);
+	free (txt);
 	if (check_order(stack_a) == 0 && stack_b->size == 0)
 		write(1, "OK\n", 3);
 	else
@@ -64,38 +72,14 @@ int	main(int argc, char **argv)
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
 	initialize(stack_a, stack_b);
-	if (argc == 2)
-	{
-
-	}
 	if (argc > 2)
 	{
 		if (create_check(stack_a, stack_b, argv, argc) == -1)
-			return (-1);
-	}
-	free_lists(stack_a, stack_b);
-	return (0);
-}
-
-int	parse_operations(t_stack *stack_a, t_stack *stack_b)
-{
-	char	*txt;
-
-	while (1)
-	{
-		txt = get_next_line(0);
-		if (!txt)
-			break ;
-		if (run_operations(stack_a, stack_b, txt) != 0)
 		{
-			free_list (stack_a);
-			free_list (stack_b);
-			free(txt);
-			write (2, "ERROR\n", 6);
+			free_lists(stack_a, stack_b);
 			return (-1);
 		}
-		free(txt);
 	}
-	free (txt);
+	free_lists(stack_a, stack_b);
 	return (0);
 }
