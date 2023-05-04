@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:21:33 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/04/18 19:39:56 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:47:55 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	rotate(t_stack *stack)
 {
-	if (stack->size < 2)
+	if (stack->size < 1)
 		return (1);
 	stack->top = stack->top->next;
 	return (0);
@@ -31,7 +31,7 @@ int	rr(t_stack *stack_a, t_stack *stack_b)
 
 int	reverse_rotate(t_stack *stack)
 {
-	if (stack->size < 2)
+	if (stack->size < 1)
 		return (1);
 	stack->top = stack->top->previous;
 	return (0);

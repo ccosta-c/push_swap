@@ -6,7 +6,7 @@
 /*   By: ccosta-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:22:12 by ccosta-c          #+#    #+#             */
-/*   Updated: 2023/05/02 10:20:30 by ccosta-c         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:26:19 by ccosta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,29 @@ int	arg_to_int_list(char **argv, int argc, t_stack *stack)
 
 int	create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
 {
-	char	*txt;
-
 	if (arg_to_int_list(argv, argc, stack_a) == -1)
 	{
 		write (2, "Error\n", 6);
 		return (-1);
 	}
 	if (check_order(stack_a) == 0)
+	{
+		write(1, "OK\n", 3);
 		return (-1);
+	}
+	if (parse_operations(stack_a, stack_b) == -1)
+		return (-1);
+	if (check_order(stack_a) == 0 && stack_b->size == 0)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	return (0);
+}
+
+int	parse_operations(t_stack *stack_a, t_stack *stack_b)
+{
+	char	*txt;
+
 	while (1)
 	{
 		txt = get_next_line(0);
@@ -55,10 +69,6 @@ int	create_check(t_stack *stack_a, t_stack *stack_b, char **argv, int argc)
 		free(txt);
 	}
 	free (txt);
-	if (check_order(stack_a) == 0 && stack_b->size == 0)
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
 	return (0);
 }
 
@@ -69,17 +79,17 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	stack_a = malloc(sizeof(t_stack));
-	stack_b = malloc(sizeof(t_stack));
-	initialize(stack_a, stack_b);
 	if (argc > 2)
 	{
+		stack_a = malloc(sizeof(t_stack));
+		stack_b = malloc(sizeof(t_stack));
+		initialize(stack_a, stack_b);
 		if (create_check(stack_a, stack_b, argv, argc) == -1)
 		{
 			free_lists(stack_a, stack_b);
 			return (-1);
 		}
+		free_lists(stack_a, stack_b);
 	}
-	free_lists(stack_a, stack_b);
 	return (0);
 }

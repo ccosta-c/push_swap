@@ -39,7 +39,7 @@ typedef struct s_utils
 	int		b_rotate;
 	int		rr;
 	int		rrr;
-	int 	sum;
+	int		sum;
 }			t_utils;
 
 int		str_to_int_list(t_stack *stack, char *str);
